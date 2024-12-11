@@ -134,52 +134,6 @@ std::string foundation::printPiles(foundation* foundationPile[])
 	output << "             " << "└───────┘" << "  └───────┘" << "  └───────┘" << "  └───────┘" << std::endl;
 	output << "                 1          2          3          4     " << std::endl; 
 
-	/*
-	switch (foundationPileCount)
-	{
-	case 1:
-		output << "Foundations: " << "┌───────┐" << std::endl;
-		output << "             " << "│" << foundationPile[0]->getTopCard()->printStr() <<"░░░░░│" << std::endl;
-		output << "             " << "│░░░░░░░│" << std::endl;
-		output << "             " << "│░░░░░░░│" << std::endl;
-		output << "             " << "│░░░░░░░│" << std::endl;
-		output << "             " << "│░░░░░░░│" << std::endl;
-		output << "             " << "└───────┘" << std::endl;
-		output << "                 1     " << std::endl;
-		break;
-	case 2:
-		output << "             " << "┌───────┐" << "  ┌───────┐" << std::endl;
-		output << "             " << "│" << foundationPile[0]->getTopCard()->printStr() << "░░░░░│" << "  │" << foundationPile[1]->getTopCard()->printStr() << "░░░░░│" << std::endl;
-		output << "             " << "│░░░░░░░│" << "  │░░░░░░░│" << std::endl;
-		output << "             " << "│░░░░░░░│" << "  │░░░░░░░│" << std::endl;
-		output << "             " << "│░░░░░░░│" << "  │░░░░░░░│" << std::endl;
-		output << "             " << "│░░░░░░░│" << "  │░░░░░░░│" << std::endl;
-		output << "             " << "└───────┘" << "  └───────┘" << std::endl;
-		output << "                 1          2     " << std::endl;
-		break;
-	case 3:
-		output << "             " << "┌───────┐" << "  ┌───────┐" << "  ┌───────┐" << std::endl;
-		output << "             " << "│" << foundationPile[0]->getTopCard()->printStr() << "░░░░░│" << "  │" << foundationPile[1]->getTopCard()->printStr() << "░░░░░│" << "  │" << foundationPile[2]->getTopCard()->printStr() << "░░░░░│" << std::endl;
-		output << "             " << "│░░░░░░░│" << "  │░░░░░░░│" << "  │░░░░░░░│" << std::endl;
-		output << "             " << "│░░░░░░░│" << "  │░░░░░░░│" << "  │░░░░░░░│" << std::endl;
-		output << "             " << "│░░░░░░░│" << "  │░░░░░░░│" << "  │░░░░░░░│" << std::endl;
-		output << "             " << "│░░░░░░░│" << "  │░░░░░░░│" << "  │░░░░░░░│" << std::endl;
-		output << "             " << "└───────┘" << "  └───────┘" << "  └───────┘" << std::endl;
-		output << "                 1          2          3     " << std::endl;
-		break;
-	case 4:
-		output << "             " << "┌───────┐" << "  ┌───────┐" << "  ┌───────┐" << "  ┌───────┐" << std::endl;
-		output << "             " << "│" << foundationPile[0]->getTopCard()->printStr() << "░░░░░│" << "  │" << foundationPile[1]->getTopCard()->printStr() << "░░░░░│" << "  │" << foundationPile[2]->getTopCard()->printStr() << "░░░░░│" << "  │" << foundationPile[3]->getTopCard()->printStr() << "░░░░░│" << std::endl;
-		output << "             " << "│░░░░░░░│" << "  │░░░░░░░│" << "  │░░░░░░░│" << "  │░░░░░░░│" << std::endl;
-		output << "             " << "│░░░░░░░│" << "  │░░░░░░░│" << "  │░░░░░░░│" << "  │░░░░░░░│" << std::endl;
-		output << "             " << "│░░░░░░░│" << "  │░░░░░░░│" << "  │░░░░░░░│" << "  │░░░░░░░│" << std::endl;
-		output << "             " << "│░░░░░░░│" << "  │░░░░░░░│" << "  │░░░░░░░│" << "  │░░░░░░░│" << std::endl;
-		output << "             " << "└───────┘" << "  └───────┘" << "  └───────┘" << "  └───────┘" << std::endl;
-		output << "                 1          2          3          4     " << std::endl;
-		break;
-	}
-	*/
-
 	return output.str();
 }
 
