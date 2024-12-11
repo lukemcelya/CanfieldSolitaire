@@ -64,8 +64,17 @@ void card::setColor(suits s)
 //Print
 std::string card::printStr()
 {
-	std::string print = ranksToStr[rank] + " " + suitsToStr[suit];
+	std::string print;
+	if (this->getColor() == RED)
+	{
+		print = "\033[31m" + ranksToStr[rank] + suitsToStr[suit] + "\033[37m";
+	}
+	else
+	{
+		print = ranksToStr[rank] + suitsToStr[suit];
+	}
 	return print;
+	
 }
 
 //Overload Operators
@@ -99,7 +108,7 @@ std::map<card::ranks, std::string> card::ranksToStr =
 	{SEVEN, "7"},
 	{EIGHT, "8"},
 	{NINE, "9"},
-	{TEN, "10"},
+	{TEN, "T"},
 	{JACK, "J"},
 	{QUEEN, "Q"},
 	{KING, "K"}
