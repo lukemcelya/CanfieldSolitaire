@@ -118,7 +118,7 @@ void resetStream()
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
-//Moves a card from deck to another pile
+//Moves a card from deck to another pile 
 void moveCardFromDeck(card* cardToMove, deck& deck, pile& pile)
 {
     pile.addCard(cardToMove);

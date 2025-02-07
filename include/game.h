@@ -18,7 +18,6 @@
 #undef max
 #endif
 
-
 //Console & Display
 void setupConsole();
 void printGameRules();
