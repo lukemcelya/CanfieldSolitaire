@@ -73,6 +73,7 @@ std::vector<card*> pile::getPileList() const
 int foundation::foundationPileCount = 0;
 card::ranks foundation::startingRank = card::ACE;
 
+//Foundation functions//
 foundation::foundation(deck& deckList) : pile()
 {
 	if (foundationPileCount == 0)
@@ -208,6 +209,8 @@ bool foundation::checkClear()
 	}
 }
 
+
+//Tableau functions//
 tableau::tableau(deck& deckList)
 {
 	pileFinish = false;
@@ -362,6 +365,8 @@ std::string tableau::printPiles(tableau* tableauPile[])
 	return output.str();
 }
 
+
+//Reserve functions//
 reserve::reserve(deck& deckList)
 {
 	for (int i = 0; i < 13; ++i)

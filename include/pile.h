@@ -29,6 +29,7 @@ protected:
 
 };
 
+//Foundation class
 class foundation : public pile
 {
 public:
@@ -52,6 +53,7 @@ private:
 
 };
 
+//Tableau class
 class tableau : public pile
 {
 public:
@@ -72,6 +74,7 @@ private:
 	std::ostringstream pileStrings[31];
 };
 
+//Reserve class
 class reserve : public pile
 {
 public:
