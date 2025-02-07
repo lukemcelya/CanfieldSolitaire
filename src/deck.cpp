@@ -1,5 +1,6 @@
 #include "deck.h"
 
+//Constructors
 deck::deck()
 {
 	//Create a deck of all 52 cards

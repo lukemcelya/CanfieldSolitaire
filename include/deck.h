@@ -24,6 +24,7 @@ public:
 	std::vector<card*> getDeckList() const;
 	card* getTopCard() const;
 	int getDeckSize() const;
+
 private:
 	std::vector <card*> deckList;
 	int deckSize;
