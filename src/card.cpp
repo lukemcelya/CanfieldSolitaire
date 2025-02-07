@@ -58,7 +58,7 @@ void card::setColor(suits s)
 	}
 }
 
-//Print
+//Print card
 std::string card::printStr()
 {
 	std::string print;

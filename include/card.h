@@ -52,7 +52,7 @@ public:
 	void setValue(ranks r);
 	void setColor(suits s);
 
-	//Print
+	//Print card
 	std::string printStr();
 
 	//Overload Operators
