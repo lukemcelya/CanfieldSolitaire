@@ -1,10 +1,10 @@
-# Ignore Visual Studio files
+# Visual Studio files
 .vs/
 *.sln
 *.vcxproj*
 *.user
 
-# Ignore compiled binaries
+# Compiled binaries
 *.exe
 *.dll
 *.pdb
@@ -13,14 +13,14 @@
 *.exp
 *.obj
 
-# Ignore build directories
+# Build directories
 Debug/
 Release/
 CMakeCache.txt
 CMakeFiles/
 build/
 
-# Ignore logs and temporary files
+# Logs and temporary files
 *.log
 *.tlog
 *.lastbuildstate
