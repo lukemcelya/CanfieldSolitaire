@@ -39,7 +39,6 @@ public:
 	};
 
 	card(ranks r, suits s);
-	~card();
 
 	//Getters
 	ranks getRank() const;

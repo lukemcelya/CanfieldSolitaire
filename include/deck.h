@@ -13,15 +13,17 @@ public:
 	deck();
 	deck(int);
 	~deck();
+
+	//Class functions
 	void shuffle();
 	void addCard(card* cardToAdd);
-	void removeCard(card* cardToRemove);
 	void removeTopCard();
+	std::string printPile();
+
+	//Getters
 	std::vector<card*> getDeckList() const;
 	card* getTopCard() const;
-	std::string toString() const;
 	int getDeckSize() const;
-	std::string printPile();
 private:
 	std::vector <card*> deckList;
 	int deckSize;

@@ -8,9 +8,6 @@ card::card(ranks r, suits s)
 	setColor(s);
 }
 
-card::~card()
-{
-}
 
 //Getters
 card::ranks card::getRank() const
@@ -116,8 +113,8 @@ std::map<card::ranks, std::string> card::ranksToStr =
 
 std::map<card::suits, std::string> card::suitsToStr =
 {
-	{HEART, "H"},
-	{DIAMOND, "D"},
-	{CLUB, "C"},
-	{SPADE, "S"}
+	{HEART, "♥"},
+	{DIAMOND, "♦"},
+	{CLUB, "♣"},
+	{SPADE, "♠"}
 };

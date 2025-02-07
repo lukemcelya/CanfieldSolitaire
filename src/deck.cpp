@@ -3,8 +3,7 @@
 deck::deck()
 {
 	//Create a deck of all 52 cards
-	deckSize = 52;
-	deckList.reserve(deckSize);
+	deckList.reserve(52);
 	for (int i = 1; i <= card::KING; ++i)
 	{
 		for (int j = 0; j <= card::SPADE; ++j)
@@ -13,13 +12,22 @@ deck::deck()
 			addCard(newCard);
 		}
 	}
-
+	deckSize = deckList.size();
 	shuffle();
 }
 
 deck::deck(int size)
 {
 	deckSize = size;
+}
+
+deck::~deck()
+{
+	for (card* c : deckList)
+	{
+		delete c;
+	}
+	deckList.clear();
 }
 
 void deck::shuffle()
@@ -35,29 +43,18 @@ void deck::shuffle()
 void deck::addCard(card* cardToAdd)
 {
 	deckList.push_back(cardToAdd);
-}
-
-void deck::removeCard(card* cardToRemove)
-{
-	for (card* c : deckList)
-	{
-		if (*c == *cardToRemove)
-		{
-			deckList.erase(std::find(deckList.begin(), deckList.end() - 1, c));
-			deckSize--;
-		}
-	}
+	this->deckSize++;
 }
 
 void deck::removeTopCard()
 {
 	deckList.pop_back();
-	deckSize--;
+	this->deckSize--;
 }
 
 std::vector<card*> deck::getDeckList() const
 {
-	return deckList;
+	return this->deckList;
 }
 
 card* deck::getTopCard() const
@@ -66,23 +63,14 @@ card* deck::getTopCard() const
 	{
 		return nullptr;
 	}
-	return deckList.back();
+	return this->deckList.back();
 }
 
 int deck::getDeckSize() const
 {
-	return deckSize;
+	return this->deckSize;
 }
 
-std::string deck::toString() const
-{
-	std::string output;
-	for (card* c : deckList)
-	{
-		output += card::ranksToStr[c->getRank()] + card::suitsToStr[c->getSuit()] + "\n";
-	}
-	return output;
-}
 
 std::string deck::printPile()
 {
@@ -98,12 +86,4 @@ std::string deck::printPile()
 	return output.str();
 }
 
-deck::~deck()
-{
-	for (card* c : deckList)
-	{
-		delete c;
-	}
-	deckList.clear();
-}
 

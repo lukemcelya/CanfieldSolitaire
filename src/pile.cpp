@@ -2,6 +2,7 @@
 
 pile::pile()
 {
+	//Reserve space for 13 cards
 	pileList.reserve(13);
 	cardCount = 0;
 }
@@ -68,16 +69,7 @@ std::vector<card*> pile::getPileList() const
 	return pileList;
 }
 
-std::string pile::toString() const
-{
-	std::string output;
-	for (card* c : this->pileList)
-	{
-		output += card::ranksToStr[c->getRank()] + card::suitsToStr[c->getSuit()] + "\n";
-	}
-	return output;
-}
-
+//Initialize static foundation variables
 int foundation::foundationPileCount = 0;
 card::ranks foundation::startingRank = card::ACE;
 
@@ -88,9 +80,9 @@ foundation::foundation(deck& deckList) : pile()
 		this->startingRank = deckList.getTopCard()->getRank();
 	}
 	pileFinish = false;
+	this->pileSuit = deckList.getTopCard()->getSuit();
 	this->addCard(deckList.getTopCard());
 	deckList.removeTopCard();
-	this->pileSuit = deckList.getTopCard()->getSuit();
 	++foundationPileCount;
 }
 
@@ -102,7 +94,11 @@ foundation::foundation() : pile()
 
 foundation::~foundation()
 {
-	
+	for (card* c : pileList)
+	{
+		delete c;
+	}
+	this->pileList.clear();
 }
 
 std::string foundation::printPiles(foundation* foundationPile[])
@@ -167,7 +163,17 @@ bool foundation::validateMove(card* cardToCheck)
 	{
 		if (cardToCheck->getSuit() == this->pileSuit)
 		{
-			card::ranks rankPlusOne = static_cast<card::ranks>(static_cast<int>(this->getTopCard()->getRank()) + 1);
+			//If the top card is a king, next card should be an ace
+			card::ranks rankPlusOne;
+			if (this->getTopCard()->getRank() == card::KING)
+			{
+				rankPlusOne = card::ACE;
+			}
+			else
+			{
+				rankPlusOne = static_cast<card::ranks>(static_cast<int>(this->getTopCard()->getRank()) + 1);
+			}
+
 			if (cardToCheck->getRank() == rankPlusOne)
 			{
 				return true;
@@ -190,6 +196,7 @@ bool foundation::validateMove(card* cardToCheck)
 
 bool foundation::checkClear()
 {
+	//If this pile has 13 cards, then it is finished
 	if (this->cardCount == 13)
 	{
 		this->pileFinish = true;
@@ -211,7 +218,11 @@ tableau::tableau(deck& deckList)
 
 tableau::~tableau()
 {
-
+	for (card* c : pileList)
+	{
+		delete c;
+	}
+	this->pileList.clear();
 }
 
 bool tableau::validateMove(card* cardToCheck)
