@@ -1,7 +1,6 @@
-﻿/*Program name: Canfield Solitaire
-* Author: John McElya
-* Date last updated: 12/11/2024
-* Purpose: To play Canfield!!!
+﻿/*Canfield Solitaire
+* John "Luke" McElya
+* Have fun :)
 */
 
 #include "game.h"
