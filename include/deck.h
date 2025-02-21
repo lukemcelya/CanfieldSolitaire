@@ -14,20 +14,20 @@ public:
 	deck(int);
 	~deck();
 
-	//Class functions
+	// Class functions
 	void shuffle();
-	void addCard(card* cardToAdd);
+	void addCard(card *cardToAdd);
 	void removeTopCard();
 	std::string printPile();
 
-	//Getters
-	std::vector<card*> getDeckList() const;
-	card* getTopCard() const;
-	int getDeckSize() const;
+	// Getters
+	std::vector<card *> getDeckList() const;
+	card *getTopCard() const;
+	size_t getDeckSize() const;
 
 private:
-	std::vector <card*> deckList;
-	int deckSize;
+	std::vector<card *> deckList;
+	size_t deckSize;
 };
 
 #endif

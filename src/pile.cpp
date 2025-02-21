@@ -2,29 +2,29 @@
 
 pile::pile()
 {
-	//Reserve space for 13 cards
+	// Reserve space for 13 cards
 	pileList.reserve(13);
 	cardCount = 0;
 }
 
 pile::~pile()
 {
-	for (card* c : pileList)
+	for (card *c : pileList)
 	{
 		delete c;
 	}
 	this->pileList.clear();
 }
 
-void pile::addCard(card* cardToAdd)
+void pile::addCard(card *cardToAdd)
 {
 	this->pileList.push_back(cardToAdd);
 	this->cardCount++;
 }
 
-void pile::removeCard(card* cardToRemove)
+void pile::removeCard(card *cardToRemove)
 {
-	for (card* c : pileList)
+	for (card *c : pileList)
 	{
 		if (*c == *cardToRemove)
 		{
@@ -40,7 +40,7 @@ void pile::removeTopCard()
 	this->cardCount--;
 }
 
-card* pile::getTopCard()
+card *pile::getTopCard()
 {
 	if (cardCount > 0)
 	{
@@ -64,17 +64,17 @@ card::suits pile::getCardSuit()
 	return this->getTopCard()->getSuit();
 }
 
-std::vector<card*> pile::getPileList() const
+std::vector<card *> pile::getPileList() const
 {
 	return pileList;
 }
 
-//Initialize static foundation variables
+// Initialize static foundation variables
 int foundation::foundationPileCount = 0;
 card::ranks foundation::startingRank = card::ACE;
 
-//Foundation functions//
-foundation::foundation(deck& deckList) : pile()
+// Foundation functions//
+foundation::foundation(deck &deckList) : pile()
 {
 	if (foundationPileCount == 0)
 	{
@@ -95,20 +95,20 @@ foundation::foundation() : pile()
 
 foundation::~foundation()
 {
-	for (card* c : pileList)
+	for (card *c : pileList)
 	{
 		delete c;
 	}
 	this->pileList.clear();
 }
 
-std::string foundation::printPiles(foundation* foundationPile[])
+std::string foundation::printPiles(foundation *foundationPile[])
 {
 	std::ostringstream output;
 
-	//The output for these piles depends on how many piles there are, since console output is printed line by line,
-	//so this is a switch statement that prints the first row of cards depending on how many foundation piles are currently active
-	//denoted by the static int placed in the class
+	// The output for these piles depends on how many piles there are, since console output is printed line by line,
+	// so this is a switch statement that prints the first row of cards depending on how many foundation piles are currently active
+	// denoted by the static int placed in the class
 	std::string topCardStr[4];
 	for (int i = 0; i < 4; ++i)
 	{
@@ -123,13 +123,13 @@ std::string foundation::printPiles(foundation* foundationPile[])
 	}
 
 	output << "             " << "┌───────┐" << "  ┌───────┐" << "  ┌───────┐" << "  ┌───────┐" << std::endl;
-	output << "             " << topCardStr[0] << topCardStr[1] << topCardStr[2] << topCardStr[3]  << std::endl;
+	output << "             " << topCardStr[0] << topCardStr[1] << topCardStr[2] << topCardStr[3] << std::endl;
 	output << "             " << "│░░░░░░░│" << "  │░░░░░░░│" << "  │░░░░░░░│" << "  │░░░░░░░│" << std::endl;
 	output << "             " << "│░░░░░░░│" << "  │░░░░░░░│" << "  │░░░░░░░│" << "  │░░░░░░░│" << std::endl;
 	output << "             " << "│░░░░░░░│" << "  │░░░░░░░│" << "  │░░░░░░░│" << "  │░░░░░░░│" << std::endl;
 	output << "             " << "│░░░░░░░│" << "  │░░░░░░░│" << "  │░░░░░░░│" << "  │░░░░░░░│" << std::endl;
 	output << "             " << "└───────┘" << "  └───────┘" << "  └───────┘" << "  └───────┘" << std::endl;
-	output << "                 1          2          3          4     " << std::endl; 
+	output << "                 1          2          3          4     " << std::endl;
 
 	return output.str();
 }
@@ -139,11 +139,11 @@ int foundation::getPileCount()
 	return foundationPileCount;
 }
 
-bool foundation::validateMove(card* cardToCheck)
+bool foundation::validateMove(card *cardToCheck)
 {
-	//If there are no cards in this foundation pile and the card being checked
-	//has an equal rank to the starting rank of all foundation piles
-	//then return true
+	// If there are no cards in this foundation pile and the card being checked
+	// has an equal rank to the starting rank of all foundation piles
+	// then return true
 	if (this->cardCount == 0)
 	{
 		if (cardToCheck->getRank() == this->startingRank)
@@ -157,14 +157,14 @@ bool foundation::validateMove(card* cardToCheck)
 		}
 	}
 
-	//If this pile has already been started, check that the suit of the card being checked
-	//matches this pile, and if it does check that it's rank is one greater than the current top
-	//card on the pile, otherwise return false
+	// If this pile has already been started, check that the suit of the card being checked
+	// matches this pile, and if it does check that it's rank is one greater than the current top
+	// card on the pile, otherwise return false
 	else if (this->cardCount > 0)
 	{
 		if (cardToCheck->getSuit() == this->pileSuit)
 		{
-			//If the top card is a king, next card should be an ace
+			// If the top card is a king, next card should be an ace
 			card::ranks rankPlusOne;
 			if (this->getTopCard()->getRank() == card::KING)
 			{
@@ -197,7 +197,7 @@ bool foundation::validateMove(card* cardToCheck)
 
 bool foundation::checkClear()
 {
-	//If this pile has 13 cards, then it is finished
+	// If this pile has 13 cards, then it is finished
 	if (this->cardCount == 13)
 	{
 		this->pileFinish = true;
@@ -209,9 +209,8 @@ bool foundation::checkClear()
 	}
 }
 
-
-//Tableau functions//
-tableau::tableau(deck& deckList)
+// Tableau functions//
+tableau::tableau(deck &deckList)
 {
 	pileFinish = false;
 	cardCount = 0;
@@ -221,27 +220,27 @@ tableau::tableau(deck& deckList)
 
 tableau::~tableau()
 {
-	for (card* c : pileList)
+	for (card *c : pileList)
 	{
 		delete c;
 	}
 	this->pileList.clear();
 }
 
-bool tableau::validateMove(card* cardToCheck)
+bool tableau::validateMove(card *cardToCheck)
 {
-	//Set what the current color and rank are
+	// Set what the current color and rank are
 	card::colors currentColor = this->getTopCard()->getColor();
 	card::ranks currentRank = this->getTopCard()->getRank();
 
-	//If cards are the same color return false
+	// If cards are the same color return false
 	if (cardToCheck->getColor() == currentColor)
 	{
 		return false;
 	}
 	else
 	{
-		//Otherwise, set what one rank lower would be and compare cards
+		// Otherwise, set what one rank lower would be and compare cards
 		card::ranks rankMinusOne;
 		if (currentRank == card::ACE)
 		{
@@ -252,7 +251,7 @@ bool tableau::validateMove(card* cardToCheck)
 			rankMinusOne = static_cast<card::ranks>(static_cast<int>(currentRank) - 1);
 		}
 
-		//If this card is equal to what the next lowest rank is return true
+		// If this card is equal to what the next lowest rank is return true
 		if (cardToCheck->getRank() == rankMinusOne)
 		{
 			return true;
@@ -264,12 +263,12 @@ bool tableau::validateMove(card* cardToCheck)
 	}
 }
 
-card* tableau::getCard(int count)
+card *tableau::getCard(int count)
 {
 	return pileList[count];
 }
 
-int tableau::getCardIndex(card* cardToFind)
+int tableau::getCardIndex(card *cardToFind)
 {
 	for (int i = 0; i < this->getCardCount(); ++i)
 	{
@@ -288,9 +287,9 @@ std::string tableau::printCards(int count)
 	return output;
 }
 
-std::string tableau::printPiles(tableau* tableauPile[])
+std::string tableau::printPiles(tableau *tableauPile[])
 {
-	//Clear all of the strings
+	// Clear all of the strings
 	for (int i = 0; i < 4; ++i)
 	{
 		for (int j = 0; j < 13; ++j)
@@ -299,7 +298,7 @@ std::string tableau::printPiles(tableau* tableauPile[])
 		}
 	}
 
-	//Get size of largest vector
+	// Get size of largest vector
 	size_t maxSize = 0;
 	for (int i = 0; i < 4; ++i)
 	{
@@ -308,29 +307,29 @@ std::string tableau::printPiles(tableau* tableauPile[])
 			maxSize = tableauPile[i]->pileList.size();
 		}
 	}
-	//Seven lines for the bottom card, two for all of the rest (piles with less cards need to have the same number
-	//of lines, just blank)
-	int maxLineCount = (7 + ((maxSize - 1) * 2));
-	
-	//Loop to set up strings for each tableau pile
+	// Seven lines for the bottom card, two for all of the rest (piles with less cards need to have the same number
+	// of lines, just blank)
+	size_t maxLineCount = (7 + ((maxSize - 1) * 2));
+
+	// Loop to set up strings for each tableau pile
 	for (int i = 0; i < 4; ++i)
 	{
 		size_t cardCount = 0;
 		size_t pileSize = tableauPile[i]->pileList.size();
 		for (int j = 0; j < maxLineCount; ++j)
 		{
-			//If it's the first card of the pile, or the start of a new card, add the top portion to the string
+			// If it's the first card of the pile, or the start of a new card, add the top portion to the string
 			if (j == 0 || (j % 2 == 0 && cardCount < pileSize))
 			{
 				tableauPile[i]->pileStrings[j] << "┌───────┐";
 			}
-			//If it's the second line of the card being drawn add the card rank and suit
+			// If it's the second line of the card being drawn add the card rank and suit
 			else if ((j % 2 != 0) && (cardCount < pileSize))
 			{
 				tableauPile[i]->pileStrings[j] << "│" << tableauPile[i]->pileList[cardCount]->printStr() << "░░░░░│";
 				cardCount++;
 			}
-			//Add the bottom portion of the last card
+			// Add the bottom portion of the last card
 			else if (cardCount++ == pileSize)
 			{
 				tableauPile[i]->pileStrings[j++] << "│░░░░░░░│";
@@ -339,7 +338,7 @@ std::string tableau::printPiles(tableau* tableauPile[])
 				tableauPile[i]->pileStrings[j++] << "│░░░░░░░│";
 				tableauPile[i]->pileStrings[j] << "└───────┘";
 			}
-			//Add blank space if other piles are longer
+			// Add blank space if other piles are longer
 			else if (cardCount > pileSize)
 			{
 				tableauPile[i]->pileStrings[j] << "         ";
@@ -347,7 +346,7 @@ std::string tableau::printPiles(tableau* tableauPile[])
 		}
 	}
 
-	//Return string output
+	// Return string output
 	std::ostringstream output;
 	for (int i = 0; i < maxLineCount; ++i)
 	{
@@ -365,9 +364,8 @@ std::string tableau::printPiles(tableau* tableauPile[])
 	return output.str();
 }
 
-
-//Reserve functions//
-reserve::reserve(deck& deckList)
+// Reserve functions//
+reserve::reserve(deck &deckList)
 {
 	for (int i = 0; i < 13; ++i)
 	{
@@ -378,7 +376,7 @@ reserve::reserve(deck& deckList)
 
 reserve::~reserve()
 {
-	for (card* c : pileList)
+	for (card *c : pileList)
 	{
 		delete c;
 	}
@@ -396,17 +394,17 @@ std::string reserve::printPile()
 {
 	std::ostringstream output;
 	output << "Reserve: " << std::endl
-		<< "┌───────┐" << std::endl
-		<< "│" << this->getTopCard()->printStr() << "░░░░░│" << std::endl
-		<< "│░░░░░░░│" << std::endl
-		<< "│░░░░░░░│" << std::endl
-		<< "│░░░░░░░│" << std::endl
-		<< "│░░░░░░░│" << std::endl
-		<< "└───────┘" << std::endl;
+		   << "┌───────┐" << std::endl
+		   << "│" << this->getTopCard()->printStr() << "░░░░░│" << std::endl
+		   << "│░░░░░░░│" << std::endl
+		   << "│░░░░░░░│" << std::endl
+		   << "│░░░░░░░│" << std::endl
+		   << "│░░░░░░░│" << std::endl
+		   << "└───────┘" << std::endl;
 	return output.str();
-}  
+}
 
-bool reserve::validateMove(card*)
+bool reserve::validateMove(card *)
 {
 	std::cerr << "Cannot move to reserve pile\n";
 	return false;

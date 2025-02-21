@@ -1,15 +1,15 @@
 #include "deck.h"
 
-//Constructors
+// Constructors
 deck::deck()
 {
-	//Create a deck of all 52 cards
+	// Create a deck of all 52 cards
 	deckList.reserve(52);
 	for (int i = 1; i <= card::KING; ++i)
 	{
 		for (int j = 0; j <= card::SPADE; ++j)
 		{
-			card* newCard = new card(static_cast<card::ranks>(i), static_cast<card::suits>(j));
+			card *newCard = new card(static_cast<card::ranks>(i), static_cast<card::suits>(j));
 			addCard(newCard);
 		}
 	}
@@ -24,7 +24,7 @@ deck::deck(int size)
 
 deck::~deck()
 {
-	for (card* c : deckList)
+	for (card *c : deckList)
 	{
 		delete c;
 	}
@@ -33,7 +33,7 @@ deck::~deck()
 
 void deck::shuffle()
 {
-	//Shuffle deck
+	// Shuffle deck
 	std::random_device rd;
 	unsigned seed = rd();
 	std::default_random_engine rng;
@@ -41,7 +41,7 @@ void deck::shuffle()
 	std::shuffle(std::begin(deckList), std::end(deckList), rng);
 }
 
-void deck::addCard(card* cardToAdd)
+void deck::addCard(card *cardToAdd)
 {
 	deckList.push_back(cardToAdd);
 	this->deckSize++;
@@ -53,12 +53,12 @@ void deck::removeTopCard()
 	this->deckSize--;
 }
 
-std::vector<card*> deck::getDeckList() const
+std::vector<card *> deck::getDeckList() const
 {
 	return this->deckList;
 }
 
-card* deck::getTopCard() const
+card *deck::getTopCard() const
 {
 	if (deckList.empty())
 	{
@@ -67,24 +67,21 @@ card* deck::getTopCard() const
 	return this->deckList.back();
 }
 
-int deck::getDeckSize() const
+size_t deck::getDeckSize() const
 {
 	return this->deckSize;
 }
-
 
 std::string deck::printPile()
 {
 	std::ostringstream output;
 	output << "Stock:   " << std::endl
-		<< "┌───────┐" << std::endl
-		<< "│" << this->getTopCard()->printStr() << "░░░░░│" << std::endl
-		<< "│░░░░░░░│" << std::endl
-		<< "│░░░░░░░│" << std::endl
-		<< "│░░░░░░░│" << std::endl
-		<< "│░░░░░░░│" << std::endl
-		<< "└───────┘" << std::endl;
+		   << "┌───────┐" << std::endl
+		   << "│" << this->getTopCard()->printStr() << "░░░░░│" << std::endl
+		   << "│░░░░░░░│" << std::endl
+		   << "│░░░░░░░│" << std::endl
+		   << "│░░░░░░░│" << std::endl
+		   << "│░░░░░░░│" << std::endl
+		   << "└───────┘" << std::endl;
 	return output.str();
 }
-
-
