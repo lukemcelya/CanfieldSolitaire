@@ -38,3 +38,6 @@ This project is open-source under the MIT License. See the `LICENSE` file for de
 
 ## Contributing
 If you find any issues or would like to contribute improvements, feel free to submit a pull request!
+
+## Thank you!
+I hope you enjoy Canfield!
