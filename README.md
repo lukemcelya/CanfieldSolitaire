@@ -8,7 +8,7 @@ This app is a simple CLI implementation of Canfield Solitaire written in C++
 
 ## Requirements
 Before building the game, ensure you have the following installed:
-*CMake (version 3.10 or higher recommended)
+* CMake (version 3.10 or higher recommended)
 
 ## Building the Project
 1. Clone the repository:
