@@ -30,7 +30,7 @@ cmake --build .
 ```
 5. Run the game:
 ```sh
-./CanfieldSolitaire # or 'CanfieldSolitaire.exe' on Windows (you might have to locate specific directory i.e. Debug/Release)
+./CanfieldSolitaire # or './CanfieldSolitaire.exe' on Windows (you might have to locate specific directory i.e. Debug/Release)
 ```
 
 ## License
